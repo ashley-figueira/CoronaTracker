@@ -1,2 +1,4 @@
 rootProject.name='CoronaTracker'
 include ':app'
+include ':domain'
+include ':data'
