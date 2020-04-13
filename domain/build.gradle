@@ -1,10 +1,25 @@
-apply plugin: 'java-library'
 apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation Libs.kotlin
+    implementation Libs.joda
+    implementation Libs.javaxAnnotation
+    implementation Libs.javaxInject
+
+    implementation Libs.dagger
+    kapt Libs.dagger_compiler
+
+    implementation Libs.coroutines_core
+    testImplementation Libs.coroutines_test
+
+    testImplementation Libs.junit
+    testImplementation Libs.mockito_inline
+    testImplementation Libs.mockito_kotlin
+    testImplementation Libs.kotlin_test_runtime
+    testImplementation Libs.kotlin_test_reflect
+    testImplementation Libs.kotlin_test_junit
 }
 
-sourceCompatibility = "7"
-targetCompatibility = "7"
+sourceCompatibility = "8"
+targetCompatibility = "8"

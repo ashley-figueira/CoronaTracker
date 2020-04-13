@@ -1,0 +1,51 @@
+dependencies {
+    //Kotlin
+    implementation Libs.kotlin
+
+    //Androidx
+    implementation Libs.androidx_appcompat
+    implementation Libs.androidx_core
+    implementation Libs.androidx_activity
+    implementation Libs.androidx_fragment
+    implementation Libs.androidx_card_view
+    implementation Libs.androidx_constraint_layout
+    implementation Libs.androidx_multidex
+    implementation Libs.androidx_browser
+    implementation Libs.material_design
+
+    //Android arch
+    implementation Libs.androidx_lifecycle
+    implementation Libs.androidx_liveData
+    implementation Libs.androidx_viewModel
+    implementation Libs.androidx_java8
+
+    //Coroutines
+    implementation Libs.coroutines_core
+    implementation Libs.coroutines_android
+
+    //Dagger
+    implementation Libs.dagger
+    implementation Libs.dagger_support
+    kapt Libs.dagger_compiler
+    kapt Libs.dagger_processor
+
+    //Navigation
+    implementation Libs.androidx_nav_runtime
+    implementation Libs.androidx_nav_fragment
+    implementation Libs.androidx_nav_ui
+
+    //Groupie
+    implementation Libs.groupie
+    implementation Libs.groupie_extensions
+
+    //Glide
+    implementation Libs.glide
+    implementation Libs.glide_okhttp_integration
+    kapt Libs.glideCompiler
+
+    //Joda
+    implementation Libs.joda
+
+    //Debug tools
+    implementation Libs.timber
+}
