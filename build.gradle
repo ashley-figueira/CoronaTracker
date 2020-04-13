@@ -52,11 +52,17 @@ subprojects {
 
                 buildTypes {
                     debug {
+                        buildConfigField("String", "BASE_URL", "\"https://coronavirus-monitor.p.rapidapi.com/\"")
+                        buildConfigField("String", "API_KEY", rapidApiKey)
+
                         debuggable true
                         minifyEnabled false
                         testCoverageEnabled true
                     }
                     release {
+                        buildConfigField("String", "BASE_URL", "\"https://coronavirus-monitor.p.rapidapi.com/\"")
+                        buildConfigField("String", "API_KEY", rapidApiKey)
+
                         testCoverageEnabled false
                         debuggable false
                     }

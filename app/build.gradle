@@ -19,6 +19,7 @@ android {
 
     buildTypes {
         debug {
+            versionNameSuffix = "debug"
             applicationIdSuffix = ".debug"
         }
 
