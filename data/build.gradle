@@ -17,7 +17,7 @@ dependencies {
     //Network
     implementation Libs.okhttp
     implementation Libs.okhttp_logging
-    implementation Libs.retrofit
+    api Libs.retrofit
     implementation Libs.retrofit_gson_coverter
     implementation Libs.gson
 
