@@ -1,12 +1,17 @@
 package com.ashleyfigueira.coronatracker
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import com.ashleyfigueira.coronatracker.base.BaseActivity
+import com.ashleyfigueira.coronatracker.common.CoronaApplication.Companion.appComponent
+import com.ashleyfigueira.coronatracker.di.DaggerMainComponent
 
-class MainActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : BaseActivity() {
+    override fun getLayoutResId(): Int = R.layout.activity_main
+    override fun onInject() {
+        DaggerMainComponent.builder()
+            .core(appComponent)
+            .activity(this)
+            .context(this)
+            .build()
+            .inject(this)
     }
 }

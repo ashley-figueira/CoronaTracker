@@ -1,7 +1,7 @@
 package com.ashleyfigueira.coronatracker.main
 
-import androidx.lifecycle.ViewModel
+import com.ashleyfigueira.coronatracker.base.BaseViewModel
+import com.ashleyfigueira.coronatracker.base.ScreenState
 
-class MainViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class MainViewModel : BaseViewModel<ScreenState<Any>>() {
 }
