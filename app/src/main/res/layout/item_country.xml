@@ -71,71 +71,75 @@
             android:layout_marginTop="24dp"
             android:textColor="@color/yellow"
             android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="@+id/textView4"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toBottomOf="@+id/countryName"
+            app:layout_constraintEnd_toStartOf="@id/recoveredCount"
+            app:layout_constraintTop_toBottomOf="@id/countryName"
+            app:layout_constraintStart_toStartOf="parent"
             tools:text="81,008" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/confirmedText"
             android:textSize="16sp"
             android:textColor="@color/light_grey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:text="@string/confirmed"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/confirmedCount" />
+            app:layout_constraintStart_toStartOf="@id/confirmedCount"
+            app:layout_constraintEnd_toEndOf="@id/confirmedCount"
+            app:layout_constraintTop_toBottomOf="@id/confirmedCount"/>
 
         <TextView
             android:id="@+id/deathCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="24dp"
             android:textColor="@color/red"
             android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="@+id/textView5"
-            app:layout_constraintStart_toStartOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/countryName"
+            app:layout_constraintTop_toBottomOf="@id/countryName"
+            app:layout_constraintStart_toEndOf="@id/recoveredCount"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="81,008" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/deathText"
             android:textSize="16sp"
             android:textColor="@color/light_grey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="26dp"
             android:text="@string/death"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/deathCount" />
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@id/deathCount"
+            app:layout_constraintEnd_toEndOf="@id/deathCount"
+            app:layout_constraintTop_toBottomOf="@+id/deathCount"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
             android:id="@+id/recoveredCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="24dp"
             android:textColor="@color/green"
             android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="@+id/textView6"
-            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintStart_toEndOf="@id/confirmedCount"
+            app:layout_constraintEnd_toStartOf="@id/deathCount"
             app:layout_constraintTop_toBottomOf="@+id/countryName"
             tools:text="81,008" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/recoveredText"
             android:textSize="16sp"
             android:textColor="@color/light_grey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/recovered"
-            app:layout_constraintEnd_toStartOf="@+id/textView5"
-            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintStart_toStartOf="@id/recoveredCount"
+            app:layout_constraintEnd_toEndOf="@id/recoveredCount"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recoveredCount" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

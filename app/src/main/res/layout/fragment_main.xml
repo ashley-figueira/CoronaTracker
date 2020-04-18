@@ -5,6 +5,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg_gradient"
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -20,6 +21,8 @@
                 android:layout_height="112dp"
                 app:expandedTitleMarginBottom="16dp"
                 app:expandedTitleMarginStart="16dp"
+                app:expandedTitleTextAppearance="@style/AppTheme.CollapsingToolbar.TextAppearance.Expanded"
+                app:collapsedTitleTextAppearance="@style/AppTheme.CollapsingToolbar.TextAppearance.Collapsed"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <androidx.appcompat.widget.Toolbar
@@ -29,7 +32,7 @@
                     android:background="@android:color/transparent"
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-                    app:title="Corona Stats" />
+                    app:title="COVID-19 Stats" />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 

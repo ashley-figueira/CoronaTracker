@@ -7,7 +7,22 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+        <item name="colorOnPrimary">@color/white</item>
+
         <item name="android:statusBarColor">#3E4A62</item>
     </style>
+
+    <!-- region CollapsingToolbar -->
+    <style name="AppTheme.CollapsingToolbar.TextAppearance.Collapsed" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppTheme.CollapsingToolbar.TextAppearance.Expanded" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!-- endregion -->
 
 </resources>
