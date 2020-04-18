@@ -21,12 +21,20 @@ class MainViewModel @Inject constructor(
 
     init {
         viewModelScope.launch(dispatcherProvider.ui()) {
+            _screenState.value = ScreenState.loading(true)
+
             val worldStatsResult = getWorldStatsUseCase()
             val countryStatsResult = getAllCountriesStats()
 
+            _screenState.value = ScreenState.loading(false)
             //Success case
             if (worldStatsResult is CoronaResult.Success && countryStatsResult is CoronaResult.Success) {
-                _screenState.value = ScreenState.success(UiModel(worldStatsResult.data, countryStatsResult.data))
+                val countryStatsList = countryStatsResult.data
+                    .filter { it.countryName.isNotBlank() }
+                    .sortedBy { it.totalCases }
+                    .reversed()
+
+                _screenState.value = ScreenState.success(UiModel(worldStatsResult.data, countryStatsList))
             //Some error handling
             } else if (worldStatsResult is CoronaResult.Failure && countryStatsResult is CoronaResult.Failure) {
                 _screenState.value = when {
