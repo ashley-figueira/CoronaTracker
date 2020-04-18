@@ -10,9 +10,14 @@ import com.ashleyfigueira.coronatracker.base.ScreenState
 import com.ashleyfigueira.coronatracker.common.gone
 import com.ashleyfigueira.coronatracker.common.visible
 import com.ashleyfigueira.coronatracker.databinding.FragmentMainBinding
+import com.ashleyfigueira.domain.entities.CountryStatsEntity
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
+import com.xwray.groupie.kotlinandroidextensions.Item
+import kotlinx.android.synthetic.main.item_country.view.*
+import java.text.NumberFormat
+import java.util.*
 
 class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
 
@@ -55,10 +60,23 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
                     binding.emptyView.gone()
                     binding.recyclerView.visible()
 
-
+                    countryWideStatsSection.update(it.data.countryStats.map { CountryStatsItem(it) })
                 }
             }
         })
+    }
+
+    inner class CountryStatsItem(private val countryStats: CountryStatsEntity) : Item() {
+        override fun bind(viewHolder: GroupieViewHolder, position: Int) = viewHolder.itemView.bind()
+        override fun getLayout(): Int = R.layout.item_country
+        private fun View.bind() {
+            countryName.text = countryStats.countryName
+            newCasesCount.text = NumberFormat.getNumberInstance(Locale.US).format(countryStats.newCases)
+            confirmedCount.text = NumberFormat.getNumberInstance(Locale.US).format(countryStats.totalCases)
+            deathCount.text = NumberFormat.getNumberInstance(Locale.US).format(countryStats.totalDeaths)
+            recoveredCount.text = NumberFormat.getNumberInstance(Locale.US).format(countryStats.totalRecovered)
+        }
+
     }
 
 }

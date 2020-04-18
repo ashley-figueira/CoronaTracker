@@ -2,6 +2,7 @@ package com.ashleyfigueira.data
 
 import com.ashleyfigueira.domain.common.CoronaError
 import com.ashleyfigueira.domain.common.CoronaResult
+import timber.log.Timber
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
@@ -10,6 +11,7 @@ suspend fun <T> safeCall(call: suspend () -> T): CoronaResult<T> {
         val result = call()
         CoronaResult.Success(result)
     } catch (throwable: Throwable) {
+        Timber.e(throwable)
         when (throwable) {
             is UnknownHostException -> CoronaResult.Failure(CoronaError.Offline(throwable))
             is SocketTimeoutException -> CoronaResult.Failure(CoronaError.Timeout(throwable))

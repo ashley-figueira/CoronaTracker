@@ -37,8 +37,8 @@ abstract class BaseFragment<B : ViewDataBinding, V : BaseViewModel<*>> : DaggerF
 
     abstract fun initUI()
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val viewModelClass = (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[1] as Class<V>
         viewModel = ViewModelProvider(this, viewModelProvider).get(viewModelClass)
         viewModel.setLifeCycleOwner(this)

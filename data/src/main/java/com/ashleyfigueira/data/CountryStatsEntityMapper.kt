@@ -4,6 +4,9 @@ import com.ashleyfigueira.data.local.entities.CountryStatsRoomEntity
 import com.ashleyfigueira.data.remote.responses.StatsByCountryResponse
 import com.ashleyfigueira.domain.common.Mapper
 import com.ashleyfigueira.domain.entities.CountryStatsEntity
+import java.lang.Exception
+import java.text.NumberFormat
+import java.util.*
 import javax.inject.Inject
 
 class CountryStatsEntityMapper @Inject constructor() : Mapper<StatsByCountryResponse, List<CountryStatsEntity>>() {
@@ -12,16 +15,26 @@ class CountryStatsEntityMapper @Inject constructor() : Mapper<StatsByCountryResp
             CountryStatsEntity(
                 it?.country_name ?: "",
                 it?.region ?: "",
-                it?.active_cases?.toLongOrNull() ?: 0L,
-                it?.cases?.toLongOrNull() ?: 0L,
-                it?.deaths?.toLongOrNull() ?: 0L,
-                it?.total_recovered?.toLongOrNull() ?: 0L,
-                it?.new_cases?.toLongOrNull() ?: 0L,
-                it?.new_deaths?.toLongOrNull() ?: 0L,
-                it?.serious_critical?.toLongOrNull() ?: 0L,
-                it?.total_cases_per_1m_population?.toLongOrNull() ?: 0L
+                formatToLong(it?.active_cases),
+                formatToLong(it?.cases),
+                formatToLong(it?.deaths),
+                formatToLong(it?.total_recovered),
+                formatToLong(it?.new_cases),
+                formatToLong(it?.new_deaths),
+                formatToLong(it?.serious_critical),
+                formatToLong(it?.total_cases_per_1m_population)
             )
         } ?: emptyList()
+    }
+
+    private fun formatToLong(from: String?): Long {
+        return from?.let {
+            try {
+                NumberFormat.getNumberInstance(Locale.US).parse(it).toLong()
+            } catch (e: Exception) {
+                0L
+            }
+        } ?: 0L
     }
 
     fun mapToRoom(from: List<CountryStatsEntity>): List<CountryStatsRoomEntity> {
