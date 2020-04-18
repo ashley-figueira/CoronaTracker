@@ -26,6 +26,7 @@ object Libs {
     const val coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
     const val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
     const val coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
+    const val kotlin_flow_extensions = "com.github.akarnokd:kotlin-flow-extensions:0.0.4"
 
     //Google
     const val google_services = "com.google.gms:google-services:${Versions.google_services}"

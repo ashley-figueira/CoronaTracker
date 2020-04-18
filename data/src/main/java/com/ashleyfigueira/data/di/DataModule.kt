@@ -69,7 +69,7 @@ class DataModule {
     }
 
     @Provides
-    @Singleton
+    @PerApplication
     fun getHeaderInterceptor(): Interceptor {
         return Interceptor { chain ->
             val request = chain.request()
