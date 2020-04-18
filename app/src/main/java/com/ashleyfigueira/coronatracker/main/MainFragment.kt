@@ -49,6 +49,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
     override fun getLayoutResId(): Int = R.layout.fragment_main
 
     override fun initUI() {
+        binding.refreshLayout.isEnabled = false
         with (binding.recyclerView) {
             layoutManager = LinearLayoutManager(context)
             adapter = groupAdapter
