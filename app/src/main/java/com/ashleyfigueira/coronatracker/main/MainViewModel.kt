@@ -3,9 +3,7 @@ package com.ashleyfigueira.coronatracker.main
 import androidx.lifecycle.viewModelScope
 import com.ashleyfigueira.coronatracker.base.BaseViewModel
 import com.ashleyfigueira.coronatracker.base.ScreenState
-import com.ashleyfigueira.domain.common.CoronaError
-import com.ashleyfigueira.domain.common.CoronaResult
-import com.ashleyfigueira.domain.common.DispatcherProvider
+import com.ashleyfigueira.domain.common.*
 import com.ashleyfigueira.domain.entities.CountryStatsEntity
 import com.ashleyfigueira.domain.entities.WorldStatsEntity
 import com.ashleyfigueira.domain.usecases.GetAllCountriesStats
@@ -21,29 +19,31 @@ class MainViewModel @Inject constructor(
 
     init {
         viewModelScope.launch(dispatcherProvider.ui()) {
-            _screenState.value = ScreenState.loading(true)
+            showLoadingSpinner()
 
             val worldStatsResult = getWorldStatsUseCase()
             val countryStatsResult = getAllCountriesStats()
 
-            _screenState.value = ScreenState.loading(false)
-            //Success case
-            if (worldStatsResult is CoronaResult.Success && countryStatsResult is CoronaResult.Success) {
-                val countryStatsList = countryStatsResult.data
-                    .filter { it.countryName.isNotBlank() }
-                    .sortedBy { it.totalCases }
-                    .reversed()
+            hideLoadingSpinner()
 
-                _screenState.value = ScreenState.success(UiModel(worldStatsResult.data, countryStatsList))
-            //Some error handling
-            } else if (worldStatsResult is CoronaResult.Failure && countryStatsResult is CoronaResult.Failure) {
-                _screenState.value = when {
-                    worldStatsResult.error is CoronaError.Offline
-                        && countryStatsResult.error is CoronaError.Offline -> ScreenState.noInternet()
-                    else -> ScreenState.empty()
+            _screenState.value = when {
+                worldStatsResult.isSuccess() && countryStatsResult.isSuccess() -> {
+                    val countryStatsList = countryStatsResult.getData()
+                        .filter { it.countryName.isNotBlank() }
+                        .sortedBy { it.totalCases }
+                        .reversed()
+
+                    ScreenState.success(UiModel(worldStatsResult.getData(), countryStatsList))
                 }
-            } else {
-                _screenState.value = ScreenState.empty()
+                worldStatsResult.isSuccess() && countryStatsResult.isFailure() -> {
+                    ScreenState.success(UiModel(worldStatsResult.getData(), emptyList()))
+                }
+                worldStatsResult.isFailure() -> {
+                    when (worldStatsResult.getError()) {
+                        is CoronaError.Offline -> ScreenState.noInternet()
+                        else -> ScreenState.empty()
+                    }
+                } else -> ScreenState.empty()
             }
         }
     }

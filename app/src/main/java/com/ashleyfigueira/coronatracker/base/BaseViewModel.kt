@@ -21,4 +21,7 @@ abstract class BaseViewModel<V : ScreenState<*>> : ViewModel(), DefaultLifecycle
             else -> R.string.error_loading_failed_message
         }
     }
+
+    protected fun showLoadingSpinner() { _screenState.value = ScreenState.loading<Any>(true) as V }
+    protected fun hideLoadingSpinner() { _screenState.value = ScreenState.loading<Any>(false) as V }
 }
