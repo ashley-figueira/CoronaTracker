@@ -5,6 +5,7 @@ import com.ashleyfigueira.data.local.entities.CountryStatsRoomEntity
 
 @Dao
 interface CountryStatsDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCountryStats(countryStats: List<CountryStatsRoomEntity>)
 

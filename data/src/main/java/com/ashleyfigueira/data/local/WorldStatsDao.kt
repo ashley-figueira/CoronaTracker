@@ -13,5 +13,5 @@ interface WorldStatsDao {
     suspend fun insertWorldStats(worldStats: WorldStatsRoomEntity)
 
     @Query("SELECT * FROM world_stats ORDER BY totalCases DESC LIMIT 1")
-    suspend fun getWorldStats(): WorldStatsRoomEntity
+    suspend fun getWorldStats(): WorldStatsRoomEntity?
 }

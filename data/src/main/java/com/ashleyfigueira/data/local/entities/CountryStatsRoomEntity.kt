@@ -15,5 +15,6 @@ data class CountryStatsRoomEntity(
     val newCases: Long,
     val newDeaths: Long,
     val seriouslyCritical: Long,
-    val totalCasesPer1mPopulation: Long
+    val totalCasesPer1mPopulation: Long,
+    val lastUpdatedAt: Long
 )

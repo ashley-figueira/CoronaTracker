@@ -4,6 +4,7 @@ import com.ashleyfigueira.data.local.entities.WorldStatsRoomEntity
 import com.ashleyfigueira.data.remote.responses.WorldStatsResponse
 import com.ashleyfigueira.domain.common.Mapper
 import com.ashleyfigueira.domain.entities.WorldStatsEntity
+import org.joda.time.DateTime
 import java.text.NumberFormat
 import java.util.*
 import javax.inject.Inject
@@ -36,7 +37,8 @@ class WorldStatsEntityMapper @Inject constructor() : Mapper<WorldStatsResponse, 
             from.totalDeaths,
             from.totalRecovered,
             from.newCases,
-            from.newDeaths
+            from.newDeaths,
+            DateTime.now().millis
         )
     }
 

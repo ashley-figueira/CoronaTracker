@@ -9,5 +9,6 @@ data class WorldStatsRoomEntity(
     val totalDeaths: Long,
     val totalRecovered: Long,
     val newCases: Long,
-    val newDeaths: Long
+    val newDeaths: Long,
+    val lastUpdatedAt: Long
 )

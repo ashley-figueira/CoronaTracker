@@ -4,6 +4,7 @@ import com.ashleyfigueira.data.local.entities.CountryStatsRoomEntity
 import com.ashleyfigueira.data.remote.responses.StatsByCountryResponse
 import com.ashleyfigueira.domain.common.Mapper
 import com.ashleyfigueira.domain.entities.CountryStatsEntity
+import org.joda.time.DateTime
 import java.lang.Exception
 import java.text.NumberFormat
 import java.util.*
@@ -49,7 +50,8 @@ class CountryStatsEntityMapper @Inject constructor() : Mapper<StatsByCountryResp
                 it.newCases,
                 it.newDeaths,
                 it.seriouslyCritical,
-                it.totalCasesPer1mPopulation
+                it.totalCasesPer1mPopulation,
+                DateTime.now().millis
             )
         }
     }

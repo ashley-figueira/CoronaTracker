@@ -8,7 +8,7 @@ import com.ashleyfigueira.data.local.entities.WorldStatsRoomEntity
 @Database(entities = [
     WorldStatsRoomEntity::class,
     CountryStatsRoomEntity::class
-], version = 1, exportSchema = false)
+], version = 2, exportSchema = false)
 abstract class CoronaDatabase : RoomDatabase() {
     abstract fun worldStatsDao(): WorldStatsDao
     abstract fun countryStatsDao(): CountryStatsDao
