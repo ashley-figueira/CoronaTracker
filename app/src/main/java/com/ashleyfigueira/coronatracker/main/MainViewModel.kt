@@ -1,5 +1,6 @@
 package com.ashleyfigueira.coronatracker.main
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.viewModelScope
 import com.ashleyfigueira.coronatracker.base.BaseViewModel
 import com.ashleyfigueira.coronatracker.base.ScreenState
@@ -17,7 +18,8 @@ class MainViewModel @Inject constructor(
     private val dispatcherProvider: DispatcherProvider
 ) : BaseViewModel<ScreenState<UiModel>>() {
 
-    init {
+    override fun onStart(owner: LifecycleOwner) {
+        super.onStart(owner)
         viewModelScope.launch(dispatcherProvider.ui()) {
             showLoadingSpinner()
 
@@ -47,7 +49,6 @@ class MainViewModel @Inject constructor(
             }
         }
     }
-
 }
 
 data class UiModel(
